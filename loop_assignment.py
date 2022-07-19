@@ -4,4 +4,4 @@ for i in range(2000,2501):
 
 num = int(input('Enter the number: '))
 for i in range(10):
-    print(str(i+1),'*',num,'=', str((i+1)*num))
+    print(i+1,'*',num,'=', (i+1)*num)
