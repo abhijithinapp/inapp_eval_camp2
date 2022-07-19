@@ -41,7 +41,7 @@ print(IP_ADDRESS.replace('0', ''))
 
 # 2. match a string that has an a followed by anything ending in b
 text = "Hi this is arnab"
-print(re.findall(r"\s\w*[Aa].*b$", text))
+print(re.findall(r"[Aa].*b$", text))
 
 # 3. Replace 6 with six and 10 with ten
 text = 'They ate 6 apples and 10 bananas'
