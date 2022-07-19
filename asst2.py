@@ -1,3 +1,4 @@
+"""
 import re
 numberList = [1, 2, 6, 4, 9, 6, 22]
 
@@ -48,3 +49,50 @@ text = 'They ate 6 apples and 10 bananas'
 text = text.replace('6', 'six')
 text = text.replace('10', 'ten')
 print(text)
+#Set in Python
+#declare an empty set
+months = {"Jan", "Feb", "Mar"}
+print(months)
+
+#looping through elements in a set
+for i in months:
+    print(i)
+
+#declare an empty set 
+days = set()
+#add values to set
+
+days.add("Mon")
+days.add("Tue")
+days.add("Wed")
+for i in months:
+    print(i)
+
+
+#Python set operations
+#Union
+months1 = {"Jan", "Feb", "Mar"}
+months2 = set(["Mar", "Apr", "May"])
+
+#Union operation
+months3 = months1 | months2
+print(months3)
+
+#Intersection
+months4 = months1.intersection(months2)
+print(months4)
+
+#Intersection Update
+a = {"Tom", "Jerry", "Mickey"}
+b = {"Jerry", "Tom", "Donald"}
+print(a.intersection_update(b))
+print(a-b)
+
+#Symmetric difference operation 
+#will retain all elements of two sets excluding the common ones
+months4 = months1 ^ months2
+months4 = months1.symmetric_difference(months)
+
+"""
+
+
