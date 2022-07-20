@@ -25,6 +25,19 @@ def findWinnerOfChance(humanPlayer,computerPlayer):
     elif humanPlayer == 3 and computerPlayer == 2:
         return 'h'
 
+def printWinnerofGame(computerPoints, humanPoints):
+    print("""-----Game Over!!-----
+Computer's Points: {}
+Your Points: {}""".format(computerPoints,humanPoints))
+    if computerPoints == humanPoints:
+        print("It was a tie")
+    elif computerPoints > humanPoints:
+        print("Computer won the game")
+    else:
+        print("You won the Game")
+        
+
+
 computerPoints = 0
 humanPoints = 0
 i=0
@@ -47,17 +60,8 @@ Enter the value assigned to your choice
                 print("Computer won in this chance!! Computer got one point.")
                 computerPoints=computerPoints+1
     i = i+1
+printWinnerofGame(computerPoints,humanPoints)
 
-print("""-----Game Over!!-----
-Computer's Points: {}
-Your Points: {}""".format(computerPoints,humanPoints))
-if computerPoints == humanPoints:
-    print("It was a tie")
-elif computerPoints > humanPoints:
-    print("Computer won the game")
-else:
-    print("You won the Game")
-    
-            
+
 
 
