@@ -1,9 +1,9 @@
 def totalPrice(basePrice, gstRate):
     priceAfterCGSTorSGST = basePrice + ((gstRate/2)/100)*basePrice
-    print("Actual price of item: %d" %(basePrice))
-    print("Price after CGST: %d" %(priceAfterCGSTorSGST ))
-    print("Price after SGST: %d" %(priceAfterCGSTorSGST ))
-    print("Total price with GST: %d" %(priceAfterCGSTorSGST * 2 ))
+    print("Actual price of item: %.2f" %(basePrice))
+    print("Price after CGST: %.2f" %(priceAfterCGSTorSGST ))
+    print("Price after SGST: %.2f" %(priceAfterCGSTorSGST ))
+    print("Total price with GST: %.2f" %(priceAfterCGSTorSGST * 2 ))
     
 
 basePrice = int(input("Enter base price: "))
