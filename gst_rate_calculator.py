@@ -10,3 +10,4 @@ basePrice = int(input("Enter base price: "))
 gstRate = int(input("Enter gst rate: "))
 totalPrice(basePrice,gstRate)
 
+
