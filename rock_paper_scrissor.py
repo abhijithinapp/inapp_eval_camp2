@@ -26,7 +26,9 @@ def findWinnerOfChance(humanPlayer,computerPlayer):
         return 'h'
 
 def printWinnerofGame(computerPoints, humanPoints):
-    print("""-----Game Over!!-----
+    print("""
+    
+    -----Game Over!!-----
 Computer's Points: {}
 Your Points: {}""".format(computerPoints,humanPoints))
     if computerPoints == humanPoints:
@@ -36,7 +38,6 @@ Your Points: {}""".format(computerPoints,humanPoints))
     else:
         print("You won the Game")
         
-
 
 computerPoints = 0
 humanPoints = 0
@@ -49,7 +50,7 @@ Enter the value assigned to your choice
 3. Scissors
 """))
     computerPlayer = randint(1,3)
-    print("Your Choice: {}\n Computer's Choice: {}".format(humanPlayer,computerPlayer))
+    print("Your Choice: {}\nComputer's Choice: {}".format(humanPlayer,computerPlayer))
     winner = findWinnerOfChance(humanPlayer,computerPlayer)
     match(winner):
             case 't': print("It was a tie. No one gets points")
