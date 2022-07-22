@@ -1,6 +1,7 @@
 # Clinic management System
 from contextlib import nullcontext
 import itertools
+from select import select
 from sys import flags
 from this import d
 
@@ -22,8 +23,7 @@ Name: {}
 Gender: {}
 Age: {}
 DOB: {}
-Blood Group: {}
-""".format(self.patientId, self.name,
+Blood Group: {}""".format(self.patientId, self.name,
            self.gender,
            self.age,
            self.dob,
@@ -36,12 +36,24 @@ Blood Group: {}
         self.dob = dob
         self.bloodGroup = bloodGroup
 
+class OP(Patient):
+    def __init__(self, patientId, name, gender, age, dob, bloodGroup, disease, noOfDays):
+        super().__init__(patientId, name, gender, age, dob, bloodGroup)
+        self.disease = disease
+        self.noOfDays = noOfDays
+    
+    def showInPatientDetails(self):
+        self.showPatientDetails()
+        print('Disease: {}'.format(self.disease))
+        print('No of Days {}'.format(self.noOfDays))
+  
 
 class CMS:
     patientList = []
     nextPatientid = 1
-
-    def admit(self):
+    inPatientList = []
+    opTicket = 1
+    def register(self):
         name = input("\nEnter name: ")
         gender = input("Enter Gender(M/F): ")
         age = int(input("Enter Age: "))
@@ -58,6 +70,10 @@ class CMS:
         for patient in self.patientList:
             patient.showPatientDetails()
 
+    def listOfAdmittedPatients(self):
+        for patient in self.inPatientList:
+            patient.showInPatientDetails()
+
     def search(self):
         flag = 0
         patientID = int(input("Enter patient ID to be searched: "))
@@ -65,6 +81,20 @@ class CMS:
             if patient.patientId == patientID:
                 print("Details of patient with ID {}:".format(patientID))
                 patient.showPatientDetails()
+                flag = 1
+        if flag == 0:
+            print("Patient ID not found")
+    
+    def admit(self):
+        flag = 0
+        patientID = int(input("Enter patient ID to be searched: "))
+        for patient in self.patientList:
+            if patient.patientId == patientID:
+                print("Details of patient with ID {}:".format(patientID))
+                disease = input("Enter the disease")
+                noOfDays = input("Enter the number of days to be admitted")
+                outpatient = OP(patient.patientId,patient.name, patient.gender, patient.age, patient.dob, patient.bloodGroup,disease,noOfDays)
+                self.inPatientList.append(outpatient)
                 flag = 1
         if flag == 0:
             print("Patient ID not found")
@@ -78,6 +108,10 @@ class CMS:
                 flag = 1
         if flag == 0:
             print("Patient details deleted")
+
+    def generateOPTicket(self):
+        print("OP ticket: {}".format(self.opTicket))
+        self.opTicket += 1
 
     def UpdatePatientDetails(self):
         flag = 0
@@ -94,24 +128,28 @@ class CMS:
         if flag == 0:
             print("Patient ID not found")
 
+        
 
 cms = CMS()
-cms.admit()
-cms.admit()
-cms.admit()
-cms.listPatients()
-cms.UpdatePatientDetails()
-cms.listPatients()
-# while(1):
-#     option = int(input("""
-# Choose the required option
-# 1. Admit Patient
-# 2. List Patients
-# 3. Search a patient
-# 4. Delete a patient
-# 5. exit
+while(1):
+    option = int(input("""
+Choose the required option
+1. Register a Patient
+2. List Patients
+3. Search a patient
+4. Delete a patient
+5. Admit a Patient
+6. List all admitted patients
+7. Create OP Ticket
+8. exit
+"""))
 
-# """))
-
-# match(option):
-#     case 1: cms.admit()
+    match(option):
+        case 1: cms.register()
+        case 2: cms.listPatients()
+        case 3: cms.search()
+        case 4: cms.delete()
+        case 5: cms.admit()
+        case 6: cms.listOfAdmittedPatients() 
+        case 7: cms.generateOPTicket()
+        case 8: exit()
