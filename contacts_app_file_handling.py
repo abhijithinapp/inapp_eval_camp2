@@ -79,7 +79,7 @@ def listAllContacts():
                 name,number = contact.strip().split(" : ")
                 number = int(number)
                 print(f"""Name: {name} 
-Phone number: {number}\n2""") 
+Phone number: {number}\n""") 
     else:
         print("Contacts database not found. Please wait for a while and check again.")
 
