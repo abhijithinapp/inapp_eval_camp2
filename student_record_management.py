@@ -69,7 +69,7 @@ class StudentRecord:
 
     @staticmethod
     def create():
-        rollno = input('Rollno: ')
+        rollno = int(input('Rollno: '))
         if StudentRecord.studentList.get(rollno):
             print('This student already exists')
         else:
@@ -85,7 +85,7 @@ class StudentRecord:
     
     @staticmethod
     def delete():
-        rollno = input('Rollno: ')
+        rollno = int(input('Rollno: '))
         if StudentRecord.studentList.get(rollno):
             del  StudentRecord.studentList[rollno]
             print('Student deleted successfully')
@@ -94,12 +94,12 @@ class StudentRecord:
     
     @staticmethod
     def modify():
-        rollno = Utils.getInt('Rollno: ')
+        rollno = int(input('Rollno: '))
         if  StudentRecord.studentList.get(rollno):
             student =  StudentRecord.studentList.get(rollno)
-            student.display()
+            student.displayStudentDetails()
             while(True):
-                opt = input('''
+                opt = int(input('''
 Choose Mark to edit:
     1. Maths
     2. Physics
@@ -108,7 +108,7 @@ Choose Mark to edit:
     5. Programing
     6. Exit
     '''
-                )
+                ))
                 match opt:
                     case 1: student.maths = input('Enter Maths mark ')
                     case 2: student.physics = input('Enter Physics Mark: ')
@@ -124,7 +124,7 @@ Choose Mark to edit:
     def listAllStudents():
         if len( StudentRecord.studentList) > 0:
             print('Student details: ')
-            for rollno, student in  StudentRecord.studentList:
+            for rollno, student in  StudentRecord.studentList.items():
                 print('\nRollno: ', rollno)
                 student.displayStudentDetails()
         else:
@@ -132,7 +132,7 @@ Choose Mark to edit:
 
     @staticmethod
     def showStudentDetails():
-        rollno = input('Enter Rollno: ')
+        rollno = int(input('Enter Rollno: '))
         if StudentRecord.studentList.get(rollno):
             print('\nRollno: ', rollno)
             StudentRecord.studentList[rollno].displayStudentDetails()
@@ -141,15 +141,14 @@ Choose Mark to edit:
     
 
 while(True):
-    opt = input('''
+    opt = int(input('''
     1. Create Student Record
     2. Delete Student Record
     3. Modify Marks
     4. Display all Students
     5. Display a student record
     6. Exit
-    
-    > ''')
+    '''))
 
     match opt:
         case 1: StudentRecord.create()
