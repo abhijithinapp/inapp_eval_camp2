@@ -1,7 +1,6 @@
-from ast import Break
 import pyodbc
 import re
-conString = 'Driver={SQL Server};Server=ABHIJITH\SQLEXPRESS;Database=camp2;Trusted_Connection=yes;'
+conString = 'Driver={SQL Server};Server=CPU1213\SQLEXPRESS;Database=camp2;Trusted_Connection=yes;'
 TABLE_EXISTS_ERROR_CODE = '42S01'
 class Utils:
     def getInt():
