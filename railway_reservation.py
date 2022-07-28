@@ -1,9 +1,11 @@
+from gzip import READ
 from tkinter.tix import Select
 import pyodbc
 import functools
-conString = 'Driver={SQL Server};Server=ABHIJITH\SQLEXPRESS;Database=camp2;Trusted_Connection=yes;'
+conString = 'Driver={SQL Server};Server=CPU1213\SQLEXPRESS;Database=camp2;Trusted_Connection=yes;'
 MAX_BIRTH_IN_TRAIN = 5
 MAX_WL_IN_TRAIN = 2
+MAX_LENGTH_OF_NAME_ALLOWED_IN_DB = 50
 class Utils:
     def getInt(*msg):
         while(True):
@@ -13,7 +15,14 @@ class Utils:
             except:
                 print("Enter a valid number")
                 continue
-
+    def getName(*msg):
+        while(True):
+            value = input(*msg)
+            if len(value == MAX_LENGTH_OF_NAME_ALLOWED_IN_DB):
+                return value
+            else:
+                print("Maximum charaxters allowed is 50")
+                continue
 
 def dbConnect(myFunc):
     @functools.wraps(myFunc)
@@ -94,7 +103,7 @@ def bookorAddtoWL():
         if stationcode!=0:
             print(stationcode, stationname)
     destination = Utils.getInt("For booking, enter number of the destination station: ")
-    name = input('Enter your name: ')
+    name = Utils.getName('Enter your name: ')
     if not bookTicket(destination,name):
         option = input('No trains available to book. Do you want to added to waiting list of available train(y/n)')
         match(option):
