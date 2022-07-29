@@ -18,7 +18,7 @@ class Utils:
     def getName(*msg):
         while(True):
             value = input(*msg)
-            if len(value == MAX_LENGTH_OF_NAME_ALLOWED_IN_DB):
+            if len(value) <= MAX_LENGTH_OF_NAME_ALLOWED_IN_DB:
                 return value
             else:
                 print("Maximum charaxters allowed is 50")

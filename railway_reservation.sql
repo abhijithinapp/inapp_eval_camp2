@@ -20,7 +20,7 @@ INSERT INTO trains(train_name, end_id, birth_filled,wait_list_filled) VALUES
 ('TVM_ERN','2','0','0'),
 ('TVM_KZM','3','0','0');
 
-SELECT * FROM trains
+SELECT * FROM trains1
 
 
 CREATE TABLE passengerdetails(passenger_id INT PRIMARY KEY IDENTITY,
