@@ -11,11 +11,6 @@ Output:
 10 4
 Also test your program with N=3781, 4928, and 5134
 """
-
-
-from this import d
-
-
 class Utils:
     def getInt(*msg):
         while(True):
@@ -75,7 +70,7 @@ class Currencies:
                 remainingamount = remainingamount%1
             else:
                 print("Done!!")
-                
+
     def displaydenominations(self):
         if self.__twoThousand:
             print(f"2000: {self.__twoThousand}")
