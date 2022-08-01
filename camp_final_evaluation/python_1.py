@@ -1,3 +1,4 @@
+from dis import dis
 from itertools import product
 from random import randint
 import re
@@ -245,21 +246,35 @@ def listAllProducts():
             sellingPrice = product.mrp - product.discount
             myTable.add_row([productcode,taxPercent,basePrice,taxAmount, mrp, discountPercent, discountAmount,sellingPrice])
         print(myTable)
-        
-
     else: 
         print("No products found")
 
+def generateInvoice():
+    xyzproduct = Product()
+    xyzproduct.taxPercent = 18
+    xyzproduct.mrp = 742
+    #after increase of mrp by 18 %
+    xyzproduct.mrp = 1.08*xyzproduct.mrp
+    #again increases to 10% and rounded to whole number
+    xyzproduct.mrp = round(1.10*xyzproduct.mrp)
+    print('Discout price: ', round(0.4*xyzproduct.mrp,2))
+    xyzproduct.mrp = round(0.6*xyzproduct.mrp)
+    print('Price Before tax: ',(100-xyzproduct.taxPercent) * xyzproduct.mrp/100)
+    print('mrp: ',xyzproduct.mrp)
+    #when given to abc discount of 40% is applied 
 
 while(True):
     print("""Enter your required option:
     1. Add Products
     2. List All Products
-    3. Exit
+    3. Generate Invoice
+    4. Exit
 """)
     option = Utils.getInt()
     match(option):
         case 1: addProducts()
         case 2: listAllProducts()
+        case 3: generateInvoice()
+        case 4: exit()
         case _: print("Invalid option")
-            
+
