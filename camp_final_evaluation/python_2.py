@@ -1,5 +1,4 @@
 
-from ast import Break
 import pyodbc
 from prettytable import PrettyTable
 import functools
@@ -242,8 +241,7 @@ while(True):
     3. Delete a patient
     4. List Patients
     5. Search Patients
-    6. Exit
-    """)
+    6. Exit""")
     option = Utils.getInt()
     match(option):
         case 1: addPatient()
