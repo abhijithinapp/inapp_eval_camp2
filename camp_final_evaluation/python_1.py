@@ -1,5 +1,3 @@
-from dis import dis
-from itertools import product
 from random import randint
 import re
 from prettytable import PrettyTable
@@ -111,6 +109,7 @@ class Product:
     @property
     def mrp(self):
         return self.__mrp
+
     @property 
     def discount(self):
         return self.__discount
@@ -147,6 +146,9 @@ class Product:
     def discount(self, discount):
         self.__discount = discount
 
+    def increasemrpByPercent(self,percent):
+        self.__mrp = round((100+percent)*self.__mrp/100,2)
+         
 categories = {
     1: Hygiene(),
     2: Health(),
@@ -254,14 +256,14 @@ def generateInvoice():
     xyzproduct.taxPercent = 18
     xyzproduct.mrp = 742
     #after increase of mrp by 18 %
-    xyzproduct.mrp = 1.08*xyzproduct.mrp
-    #again increases to 10% and rounded to whole number
-    xyzproduct.mrp = round(1.10*xyzproduct.mrp)
+    xyzproduct.increasemrpByPercent(18)
+    #after increase of mrp by 10 %
+    xyzproduct.increasemrpByPercent(10)
     print('Discout price: ', round(0.4*xyzproduct.mrp,2))
-    xyzproduct.mrp = round(0.6*xyzproduct.mrp)
+    #after 40 % discount
+    xyzproduct.increasemrpByPercent(-40)
     print('Price Before tax: ',(100-xyzproduct.taxPercent) * xyzproduct.mrp/100)
     print('mrp: ',xyzproduct.mrp)
-    #when given to abc discount of 40% is applied 
 
 while(True):
     print("""Enter your required option:
@@ -277,4 +279,3 @@ while(True):
         case 3: generateInvoice()
         case 4: exit()
         case _: print("Invalid option")
-
